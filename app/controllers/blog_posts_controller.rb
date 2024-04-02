@@ -1,4 +1,5 @@
 class BlogPostsController < ApplicationController
+    before_action :authenticate_user!, except: [:index, :show]
     before_action :set_blog_post, except: [:index, :new, :create]
 
 
@@ -36,7 +37,6 @@ class BlogPostsController < ApplicationController
     end
 
     def destroy
-        @blog_post = BlogPost.find(params[:id])
         @blog_post.destroy
         redirect_to root_path
     end
