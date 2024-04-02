@@ -36,3 +36,5 @@
 
 
 RailsBlog.code-workspace
+/app/assets/builds/*
+!/app/assets/builds/.keep
