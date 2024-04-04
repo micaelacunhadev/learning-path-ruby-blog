@@ -26,4 +26,18 @@ class BlogPostTest < ActiveSupport::TestCase
   test "published? returns false for scheduled blog post" do
     refute blog_posts(:scheduled).published?
   end
+
+
+  test "scheduled? returns true for scheduled blog post" do
+    assert blog_posts(:scheduled).scheduled?
+  end
+
+  test "scheduled? returns false for draft blog post" do
+    refute blog_posts(:draft).scheduled?
+  end
+  
+  test "scheduled? returns false for published blog post" do
+    refute blog_posts(:published).scheduled?
+  end
+ 
 end
