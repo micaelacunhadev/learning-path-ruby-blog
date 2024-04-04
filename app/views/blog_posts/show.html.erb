@@ -1,3 +1,20 @@
-<%= link_to "Edit", edit_blog_post_path(@blog_post) %>
+<% if user_signed_in? %>
+    <div class="actions">
+        <%=link_to "Edit", edit_blog_post_path(@blog_post),
+            class: "bg-gray-100 px-4 py-2 rounded hover:bg-gray-200"
+        %>
+
+        <% if @blog_post.published_at.nil? %>
+           <span class="bg-blue-100 px-4 py-2 rounded">Draft</span>
+        <% elsif @blog_post.published_at > Time.now %>
+            <span class="bg-purple-100 px-4 py-2 rounded">Scheduled for <%=@blog_post.published_at%> </span>
+        <% end %>
+    </div>
+<% end %>
+
 <h1><%= @blog_post.title %> </h1>
 <p><%= @blog_post.body %> </p>
+
+<% if @blog_post.published_at.nil? == false && @blog_post.published_at <= Time.now %>
+    <span class="italic px-4 py-8 rounded">Published on <%=@blog_post.published_at%> </span>
+<% end %>

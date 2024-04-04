@@ -3,6 +3,17 @@
  <% @blog_posts.each do |blog_post| %>
   <div>
       <h2><%= link_to blog_post.title, blog_post_path(blog_post.id) %></h2>
+
+       <% if user_signed_in? %>
+        <% if blog_post.published_at.nil? %>
+           <div class="bg-blue-100 px-4 py-2 rounded">Draft</div>
+        <% elsif blog_post.published_at > Time.now %>
+            <div class="bg-purple-100 px-4 py-2 rounded">Scheduled for <%=blog_post.published_at%> </div>
+        <% elsif blog_post.published_at <= Time.now %>
+            <div class="italic px-4 py-2 rounded">Published on <%=blog_post.published_at%> </div>
+        <% end %>
+      <% end %>
+
       <p><%= blog_post.body %></p>
   </div>
 <%end%>
