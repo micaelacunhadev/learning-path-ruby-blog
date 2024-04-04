@@ -13,7 +13,7 @@
 <% end %>
 
 <h1><%= @blog_post.title %> </h1>
-<p><%= @blog_post.body %> </p>
+<p><%= @blog_post.content %> </p>
 
 <% if @blog_post.published_at.nil? == false && @blog_post.published_at <= Time.now %>
     <span class="italic px-4 py-8 rounded">Published on <%=@blog_post.published_at%> </span>
